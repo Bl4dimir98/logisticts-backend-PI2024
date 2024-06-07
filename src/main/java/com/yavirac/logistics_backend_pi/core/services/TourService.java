@@ -1,6 +1,7 @@
 package com.yavirac.logistics_backend_pi.core.services;
 
 import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.yavirac.logistics_backend_pi.core.entities.Tour;
@@ -24,7 +25,7 @@ public class TourService {
     }
 
     // Get By ID
-    public Tour findById(long id) {
+    public Tour findById(Long id) {
         return tourRepository.findById(id).orElse(null);
     }
 

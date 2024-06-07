@@ -1,11 +1,15 @@
 package com.yavirac.logistics_backend_pi.auth.user;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.yavirac.logistics_backend_pi.core.entities.Tour;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -15,12 +19,17 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder.Default;
+import jakarta.persistence.CascadeType;
 
 @Data
 @Builder
@@ -59,6 +68,18 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     Role role;
     private Boolean enable;
+
+    // * Relations*/
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+        name = "user_tour",
+        joinColumns = {@JoinColumn(name = "user_id")},
+        inverseJoinColumns = {@JoinColumn(name = "tour_id")}
+    )
+
+    // * Methods*/
+    @Default
+    private Set<Tour> tours = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

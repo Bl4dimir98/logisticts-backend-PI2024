@@ -5,13 +5,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
+import jakarta.persistence.CascadeType;
+
 import java.util.Date;
+import java.util.Set;
+
+import com.yavirac.logistics_backend_pi.auth.user.User;
 
 @Data
 @Builder
@@ -51,7 +58,7 @@ public class Tour {
     @ManyToOne
     private Transport transport;
 
-    // @ManyToMany(mappedBy = "tours", cascade = CascadeType.ALL)
-    // private Set<UserAuth> users;
+    @ManyToMany(mappedBy = "tours", cascade = CascadeType.ALL)
+    private Set<User> users;
 
 }
