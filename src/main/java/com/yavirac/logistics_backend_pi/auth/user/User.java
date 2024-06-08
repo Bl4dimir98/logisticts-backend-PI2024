@@ -16,6 +16,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,8 +29,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Builder.Default;
-import jakarta.persistence.CascadeType;
 
 @Data
 @Builder
@@ -70,17 +69,15 @@ public class User implements UserDetails {
     private Boolean enable;
 
     // * Relations*/
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "user_tour",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "tour_id")}
-    )
-
-    // * Methods*/
-    @Default
+        name = "user_tour", 
+        joinColumns = { @JoinColumn(name = "user_id") }, 
+        inverseJoinColumns = {@JoinColumn(name = "tour_id") })
+    @Builder.Default
     private Set<Tour> tours = new HashSet<>();
 
+    // * Methods*/
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority((role.name())));

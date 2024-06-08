@@ -29,4 +29,19 @@ public class AuthController {
         return ResponseEntity.ok(authService.register(request));
     }
 
+    @PostMapping(value = "admin")
+    public ResponseEntity<AuthResponse> registerAdmin(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.registerAdmin(request));
+    }
+
+    @PostMapping(value = "driver")
+    public ResponseEntity<AuthResponse> registerDriver(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.registerDriver(request));
+    }
+
+    @PostMapping(value = "guide")
+    public ResponseEntity<AuthResponse> registerGuide(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.registerGuide(request));
+    };
+
 }

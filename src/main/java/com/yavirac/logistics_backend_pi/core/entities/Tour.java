@@ -2,6 +2,7 @@ package com.yavirac.logistics_backend_pi.core.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
@@ -13,9 +14,9 @@ import lombok.Data;
 
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
-import jakarta.persistence.CascadeType;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.yavirac.logistics_backend_pi.auth.user.User;
@@ -58,7 +59,8 @@ public class Tour {
     @ManyToOne
     private Transport transport;
 
-    @ManyToMany(mappedBy = "tours", cascade = CascadeType.ALL)
-    private Set<User> users;
+    @ManyToMany(mappedBy = "tours", fetch = FetchType.EAGER)
+    @Builder.Default
+    private Set<User> users = new HashSet<>();
 
 }

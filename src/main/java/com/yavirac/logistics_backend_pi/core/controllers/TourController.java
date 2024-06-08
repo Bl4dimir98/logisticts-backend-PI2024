@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.yavirac.logistics_backend_pi.core.entities.Tour;
 import com.yavirac.logistics_backend_pi.core.services.TourService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TourController {
 
-    private final TourService tourService; 
+    private final TourService tourService;
 
     // CREATE
     @PostMapping(value = "tours")
@@ -57,5 +58,16 @@ public class TourController {
     public ResponseEntity<Tour> updateById(@PathVariable long id, @RequestBody Tour tour) {
         return tourService.updateById(id, tour);
     };
-    
+
+    // ADD USER TO TOUR
+    @PostMapping(value = "{uId}/tours/{tId}")
+    public ResponseEntity<String> addUserToTour(@PathVariable Long uId, @PathVariable Long tId) {
+        try {
+            tourService.addTourToUser(uId, tId);
+            return ResponseEntity.ok("Tour added to User successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    };
+
 }
