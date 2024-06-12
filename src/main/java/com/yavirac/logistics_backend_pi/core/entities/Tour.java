@@ -1,6 +1,5 @@
 package com.yavirac.logistics_backend_pi.core.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -8,18 +7,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import lombok.NoArgsConstructor;
-import jakarta.persistence.Id;
-
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import com.yavirac.logistics_backend_pi.auth.user.User;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Builder
@@ -28,25 +28,16 @@ import com.yavirac.logistics_backend_pi.auth.user.User;
 @Entity
 @Table(name = "tours")
 public class Tour {
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private Long id;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
     private Integer price;
-    @Column(nullable = false)
     private Integer days_duration;
-    @Column(nullable = false)
     private String sector;
-    @Column(nullable = false)
     private Integer capacity_quotes;
-    @Column(nullable = false)
-    // private image
     private Date start_date;
-    @Column(nullable = false)
     private Boolean enable;
 
     // * Relations*/
@@ -59,8 +50,8 @@ public class Tour {
     @ManyToOne
     private Transport transport;
 
-    @ManyToMany(mappedBy = "tours", fetch = FetchType.EAGER)
-    @Builder.Default
-    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "tours", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<User> users;
 
 }

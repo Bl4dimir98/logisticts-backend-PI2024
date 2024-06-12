@@ -58,7 +58,6 @@ public class AuthService {
                                 .build();
                 userRepository.save(user);
                 return AuthResponse.builder()
-                                .token(jwtService.getToken(user))
                                 .build();
         };
 
@@ -86,7 +85,6 @@ public class AuthService {
                                 .build();
                 userRepository.save(admin);
                 return AuthResponse.builder()
-                                .token(jwtService.getToken(admin))
                                 .build();
         };
 
@@ -114,7 +112,6 @@ public class AuthService {
                                 .build();
                 userRepository.save(driver);
                 return AuthResponse.builder()
-                                .token(jwtService.getToken(driver))
                                 .build();
         };
 
@@ -142,7 +139,6 @@ public class AuthService {
                                 .build();
                 userRepository.save(guide);
                 return AuthResponse.builder()
-                                .token(jwtService.getToken(guide))
                                 .build();
         };
         

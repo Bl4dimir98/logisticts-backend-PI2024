@@ -21,11 +21,13 @@ import lombok.RequiredArgsConstructor;
 public class ApplicationConfig {
     private final UserRepository userRepository;
 
+    // Interfaz central en Spring Security que se utiliza para autenticar usuarios
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    // Autentifica credenciales del usuario
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -34,11 +36,13 @@ public class ApplicationConfig {
         return authenticationProvider;
     }
 
+    // Cifra las contraseñas
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // Carga detalles de usuario durante la autenticación.
     @Bean
     public UserDetailsService userDetailService() {
         return username -> userRepository.findByUsername(username)

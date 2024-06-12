@@ -1,13 +1,10 @@
 package com.yavirac.logistics_backend_pi.core.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.yavirac.logistics_backend_pi.auth.user.User;
-import com.yavirac.logistics_backend_pi.auth.user.UserRepository;
 import com.yavirac.logistics_backend_pi.core.entities.Tour;
 import com.yavirac.logistics_backend_pi.core.repositories.TourRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 public class TourService {
 
     private final TourRepository tourRepository;
-    private final UserRepository userRepository;
 
     // Create
     public Tour save(Tour tour) {
@@ -67,22 +63,6 @@ public class TourService {
             return ResponseEntity.ok(tourSave);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
-        }
-    };
-
-    // Añadir Tour a un Usuario
-    public void addTourToUser(Long user_id, Long tour_id) throws Exception {
-        Optional<User> userOpt = userRepository.findById(user_id);
-        Optional<Tour> tourOpt = tourRepository.findById(tour_id);
-
-        if (userOpt.isPresent() && tourOpt.isPresent()) {
-            User user = userOpt.get();
-            Tour tour = tourOpt.get();
-
-            user.getTours().add(tour);
-            userRepository.save(user);
-        } else {
-            throw new Exception("Usuario no encontrado");
         }
     };
 
