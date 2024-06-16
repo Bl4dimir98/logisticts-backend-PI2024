@@ -1,7 +1,7 @@
 package com.yavirac.logistics_backend_pi.auth.controllers;
 
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "api/v1")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     // Dependency injection

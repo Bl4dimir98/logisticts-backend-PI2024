@@ -28,6 +28,7 @@ public class AuthController {
     }
 
     /* Creación usuarios con roles específicos */
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "user")
     public ResponseEntity<AuthResponse> registerUser(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
@@ -37,12 +38,12 @@ public class AuthController {
     public ResponseEntity<AuthResponse> registerAdmin(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.registerAdmin(request));
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "driver")
     public ResponseEntity<AuthResponse> registerDriver(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.registerDriver(request));
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "guide")
     public ResponseEntity<AuthResponse> registerGuide(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.registerGuide(request));

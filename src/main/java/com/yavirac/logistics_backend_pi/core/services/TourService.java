@@ -56,9 +56,9 @@ public class TourService {
                 tourExist.setCapacity_quotes(tourUpdate.getCapacity_quotes());
             if (tourUpdate.getStart_date() != null)
                 tourExist.setStart_date(tourUpdate.getStart_date());
-            if (tourUpdate.getEnable() != null)
-                tourExist.setEnable(tourUpdate.getEnable());
-            // Save Data
+            // if (tourUpdate.getEnable() != null)
+            //     tourExist.setEnable(tourUpdate.getEnable());
+            // // Save Data
             Tour tourSave = save(tourExist);
             return ResponseEntity.ok(tourSave);
         } catch (Exception e) {

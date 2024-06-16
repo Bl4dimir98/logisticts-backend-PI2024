@@ -45,8 +45,8 @@ public class RestaurantService {
                 restaurantExist.setName(restaurantUpdate.getName());
             if (restaurantUpdate.getAddress() != null)
                 restaurantExist.setAddress(restaurantUpdate.getAddress());
-            if (restaurantUpdate.getEnable() != null)
-                restaurantExist.setEnable(restaurantUpdate.getEnable());
+            // if (restaurantUpdate.getEnable() != null)
+            //     restaurantExist.setEnable(restaurantUpdate.getEnable());
             // Save Data
             Restaurant restaurantSave = save(restaurantExist);
             return ResponseEntity.ok(restaurantSave);

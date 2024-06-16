@@ -46,8 +46,8 @@ public class TransportService {
                 transportExist.setPrice(transportUpdate.getPrice());
             if (transportUpdate.getCapacity() != null)
                 transportExist.setCapacity(transportUpdate.getCapacity());
-            if (transportUpdate.getEnable() != null)
-                transportExist.setEnable(transportUpdate.getEnable());
+            // if (transportUpdate.getEnable() != null)
+            //     transportExist.setEnable(transportUpdate.getEnable());
             // Save Data
             Transport transportSave = save(transportExist);
             return ResponseEntity.ok(transportSave);

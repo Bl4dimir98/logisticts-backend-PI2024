@@ -26,12 +26,12 @@ public class Hotel {
     private String name;
     @Column(nullable = false)
     private String address;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer phone;
     @Column(nullable = false)
     private String email;
-    @Column(nullable = false)
-    private Boolean enable;
+    // @Column(nullable = true)
+    // private Boolean enable;
 
     // * Relations*/
     @ManyToOne

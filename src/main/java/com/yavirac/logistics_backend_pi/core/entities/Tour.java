@@ -38,7 +38,7 @@ public class Tour {
     private String sector;
     private Integer capacity_quotes;
     private Date start_date;
-    private Boolean enable;
+    // private Boolean enable;
 
     // * Relations*/
     @ManyToOne

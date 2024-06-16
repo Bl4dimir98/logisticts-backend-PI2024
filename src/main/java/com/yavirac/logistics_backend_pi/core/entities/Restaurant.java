@@ -26,8 +26,8 @@ public class Restaurant {
     private String name;
     @Column(nullable = false)
     private String address;
-    @Column(nullable = false)
-    private Boolean enable;
+    // @Column(nullable = false)
+    // private Boolean enable;
 
     // * Relations*/
     @ManyToOne

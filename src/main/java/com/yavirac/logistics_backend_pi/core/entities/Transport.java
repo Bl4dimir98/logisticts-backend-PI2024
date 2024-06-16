@@ -27,7 +27,7 @@ public class Transport {
     private Integer price;
     @Column(nullable = false)
     private Integer capacity;
-    @Column(nullable = false)
-    private Boolean enable;
+    // @Column(nullable = false)
+    // private Boolean enable;
 
 }
