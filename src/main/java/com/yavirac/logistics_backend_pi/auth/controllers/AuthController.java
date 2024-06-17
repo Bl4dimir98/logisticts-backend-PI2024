@@ -16,16 +16,18 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "auth/register")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class AuthController {
+
+    // Dependency injection
     private final AuthService authService;
 
     // Autentificación de usuarios
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
-    }
+    };
 
     /* Creación usuarios con roles específicos */
     @PostMapping(value = "user")

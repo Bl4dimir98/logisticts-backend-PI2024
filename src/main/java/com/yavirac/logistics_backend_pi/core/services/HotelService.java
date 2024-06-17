@@ -48,8 +48,8 @@ public class HotelService {
                 hotelExist.setPhone(hotelExist.getPhone());
             if (hotelUpdate.getEmail() != null)
                 hotelExist.setEmail(hotelUpdate.getEmail());
-            if (hotelUpdate.getEnable() != null)
-                hotelExist.setEnable(hotelUpdate.getEnable());
+            // if (hotelUpdate.getEnable() != null)
+            //     hotelExist.setEnable(hotelUpdate.getEnable());
             // Save Data
             Hotel hotelSave = save(hotelExist);
             return ResponseEntity.ok(hotelSave);
